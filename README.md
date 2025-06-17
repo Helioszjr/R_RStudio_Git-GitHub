@@ -1,2 +1,252 @@
 # R_RStudio_Git-GitHub
 Introdução e instalação ao R, RStudio,  Git/GitHub e RMarkdown- Passo a passo
+
+Elaborado por [Helio de Souza Junior](https://github.com/Helioszjr), com
+[RStudio](https://posit.co/download/rstudio-desktop) usando
+[Rmarkdown](https://rmarkdown.rstudio.com/index.html) e
+[Quarto](https://quarto.org/docs/guide/). Código disponível no
+[GitHub](https://github.com/Helioszjr).
+
+## 0. Instalação
+
+-   Todas as dicas de instalação abaixo são fragmentos [deste post do
+    blog](https://www.r-bloggers.com/2021/03/get-a-treat-a-template-for-reproducible-research-with-r/)
+    . Visite-o para obter informações mais detalhadas.
+
+## 1. R
+
+R é um ambiente computacional e uma linguagem de programação que vem
+progressivamente se especializando em manipulação, análise e
+visualização gráfica de dados. Na atualidade é considerado o melhor
+ambiente computacional para essa finalidade. O ambiente está disponível
+para diferentes sistemas operacionais: Unix/Linux, Mac e Windows
+(Wikipedia
+[https://pt.wikipedia.org](https://pt.wikipedia.org/wiki/R_(linguagem_de_programa%C3%A7%C3%A3o)).
+O nome R provém em parte das iniciais dos criadores (Ross e Robert) e
+também de um jogo figurado com a linguagem S ([Bell Laboratories, antiga
+AT&T](https://www.britannica.com/money/Bell-Laboratories)).
+
+Para instalar o R, acesse
+[https://cloud.r-project.org](https://cloud.r-project.org/) , siga os
+links para sua plataforma, baixe e instale os binários atuais do R para
+a distribuição base. Não crie itens de menu ou entradas na barra de
+tarefas. Você não precisará deles, pois usará o R via RStudio.
+
+### Ferramentas R
+
+Embora não seja estritamente necessário, o Rtools ajuda a tornar os
+projetos reproduzíveis em várias plataformas. Podemos ignorá-lo por
+enquanto.
+
+## 2. RStudio
+
+O RStudio é um Ambiente de Desenvolvimento Integrado (IDE) centrado em
+R, que oferece tudo o que você precisa para conectar-se a outras
+linguagens de programação e ferramentas. Contaremos com o RStudio para
+executar R, escrever relatórios usando R Markdown e colaborar usando sua
+integração com o Git.
+
+Para instalar o RStudio, acesse
+[https://rstudio.com/products/rstudio/download/](https://posit.co/download/rstudio-desktop/)
+, baixe e instale a versão gratuita para desktop. Você pode adicionar
+uma entrada na barra de tarefas, conforme necessário.
+
+### Visual
+
+No RStudio, você pode ir em
+`Tools> Global Options> Appearance> Editor Theme:` e escolher o seu
+proprio estilo visual.
+
+**Fig. 1.** Estilo visual
+
+### Alguns atalhos úteis
+
+Conhecer os atalhos do teclado ajuda bastante quando estamos programando
+no RStudio. Veja os principais:
+
+**CTRL+ENTER**: roda a(s) linha(s) selecionada(s) no script. O atalho
+mais utilizado.
+
+**ALT+-**: cria no script um sinal de atribuição (\<-). Você o usará o
+tempo todo.
+
+**CTRL+SHIFT+M**: (%\>%) operador pipe. Guarde esse atalho, você o usará
+bastante.
+
+**CTRL+1**: altera cursor para o script.
+
+**CTRL+2**: altera cursor para o console.
+
+**CTRL+ALT+I**: cria um chunk no R Markdown.
+
+**CTRL+SHIFT+K**: compila um arquivo no R Markdown.
+
+**ALT+SHIFT+K**: janela com todos os atalhos disponíveis.
+
+No MacBook, os atalhos geralmente são os mesmos, substituindo o **CTRL**
+por command e o **ALT** por option.
+
+### Como instalar e carregar os pacotes
+
+Observe que os nomes dos pacotes são sensíveis a maiúsculas e
+minúsculas.
+
+> **Nota:** este comando *instala* um pacote, mas *não* o carrega para
+> utilização na sessão atual.
+
+```{r, echo=TRUE, eval=FALSE}
+# essa função disponível no R base instala um único pacote 
+install.packages("tidyverse")
+
+# essa função disponível no R base instala um múltiplos pacotes 
+install.packages(c("tidyverse", "ggplot2", "readr"))
+```
+
+Após a instação é preciso carregar o pacote para utilização (após ter
+sido instalado) é o `library()` que fará ele funcionar.
+
+```{r, echo=TRUE, eval=FALSE}
+# com o R base, você pode carregar e liberar os pacotes dessa forma 
+library(tidyverse)
+library(ggplot2)
+library(readr)
+```
+**OBS:** Existe uma vasta quantidade de pacotes disponíveis.
+
+## 3. Git/GitHub
+
+O Git nos ajudará a monitorar versões do nosso trabalho e a colaborar
+com outras pessoas em um projeto enquanto você trabalha nele
+simultaneamente.
+
+Primeiro, criaremos sua conta no GitHub em
+[https://github.com/join](https://github.com/) . Você precisará fornecer
+um nome de usuário, um e-mail e confirmá-los. O GitHub enviará um
+primeiro e-mail para confirmar sua identidade.
+
+Antes de usar o Git com o RStudio, você deve instalá-lo usando o método
+apropriado para sua plataforma:
+
+-   Windows e OS X:
+    [http://git-scm.com/downloads](https://git-scm.com/downloads)
+
+-   Debian/Ubuntu: `sudo apt-get install git-core`
+
+-   Fedora/RedHat: `sudo yum install git-core`
+
+Clique nos `Next` botões até que o `Install` botão apareça e clique
+nele.
+
+Após instalar o Git, você precisa configurá-lo. Para definir seu nome de
+usuário e senha usando o RStudio, acesse a `Terminal` aba:
+
+Na `Terminal` aba, execute o seguinte código (altere para *seu* nome e
+*e-mail*):
+
+```{r, echo=TRUE, eval=FALSE}
+git config --global user.name "Your Name" 
+git config --global user.email "your_email@example.com"
+```
+
+### Integração do RStudio e GitHub
+
+### RStudio
+
+No RStudio, vá para `Tools> Global Options...> Git/SVN`
+
+**1.** Selecione `Enable version control for RStudio projects`
+
+**2.** Certifique-se de apontar para o caminho correto para o executável
+do Git (e não se preocupe com o SVN)
+
+**3.** Clique `Create RSA Key...` e clique em `Create`
+
+**4.** Clique em `View public key` e pressione `Crtl+ C` para copiar a
+chave para a área de transferência
+
+### GitHub
+
+Você precisará adicionar uma chave para vincular seu GitHub ao RStudio.
+
+Acesse <https://github.com/settings/keys>:
+
+**1.** Clique em `New SHH key`
+
+**2.** Dê um título à sua chave (identificando o computador em que você
+está), por exemplo, “Meu laptop”
+
+**3.** Cole (`Crtl+ V`) a chave da sua área de transferência
+
+**4.** Clique em `Add SSH key`
+
+### Começando
+
+Vamos criar um repositório, vinculá-lo a um projeto do RStudio,
+atualizar o projeto com um arquivo R Markdown e enviar esse arquivo para
+o repositório.
+
+### Criar um repositório GitHub
+
+Agora, acesse <http://github.com/new>:
+
+**1.** Escolha um nome de repositório, por exemplo `r_sandbox`
+
+**2.** Clique em `Private`
+
+**3.** Selecione `Add a README file`
+
+**4.** Selecione `Add .gitignore` (e escolha `R` como seu .gitignore
+template\`)
+
+**5.** Clique em `Create Repository` e copie (`Crtl+ C`) o URL do
+repositório para sua área de transferência
+
+### Criar um projeto RStudio
+
+No RStudio, vá para `File> New Project...> Version Control> Git`
+
+**1.** Cole (`Crtl+ V`) a URL do `r_sandbox` repositório da sua área de
+transferência
+
+**2.** Escolha a pasta onde seu projeto será salvo (por exemplo, crie
+uma pasta chamada `git` para salvar todos os seus repositórios em um
+único lugar)
+
+**3.** Clique em `Create Project`
+
+## 4. R Markdown
+
+### Criar um arquivo R Markdown
+
+No RStudio, vá para `File> New file> R Markdown...`
+
+**1.** Se o RStudio solicitar a instalação de alguns pacotes, permita
+que ele o faça (você só precisará fazer isso uma vez)
+
+**2.** Insira um título e seu nome e clique no `OK` botão
+
+**3.** Vá para `File> Knit Document` ou simplesmente clique no `Knit`
+botão e você terá seu primeiro relatório
+
+### Carregar alterações do projeto no GitHub
+
+No RStudio, vá para `Tools> Version Control> Commit`. Alternativamente,
+você pode ir para `Git` a guia \> `Commit`
+
+![](img/3.png){fig-align="center"} **Fig. 5.** `Git` aba
+
+Na janela pop-up:
+
+**1.** Pressione `Crtl`+ `A` para selecionar todos os arquivos e clique
+em `Stage` (ou você também pode clicar em cada arquivo para que todos
+sejam marcados)
+
+**2.** Escreva um (significativo) `Commit message`, por exemplo “Meu
+primeiro commit”
+
+**3.** Clique em `Commit` e clique em `Close` quando estiver pronto
+
+**4.** Clique em `Pushe` clique em `Close` quando estiver pronto
+
+Acesse sua página do GitHub em <https://github.com/> e veja seu
+`r_sandbox` repositório atualizado.
