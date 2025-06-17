@@ -111,7 +111,6 @@ library(tidyverse)
 library(ggplot2)
 library(readr)
 ```
-
 **OBS:** Existe uma vasta quantidade de pacotes disponíveis.
 
 ## 3. Git/GitHub
@@ -154,12 +153,6 @@ git config --global user.email "your_email@example.com"
 ### RStudio
 
 No RStudio, vá para `Tools> Global Options...> Git/SVN`
-
-A janela abaixo será exibida.
-
-![](img/2.png){fig-align="center"} **Fig. 4.** Opções globais
-
-Então:
 
 **1.** Selecione `Enable version control for RStudio projects`
 
